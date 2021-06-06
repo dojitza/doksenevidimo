@@ -1,18 +1,81 @@
 <!DOCTYPE html>
-
-<html lang="en">
+<html>
   <head>
-    <meta charset="utf-8" />
-
-    <title>Test</title>
-    <meta name="description" content="The HTML5 Herald" />
-    <meta name="author" content="SitePoint" />
-
-    <link rel="stylesheet" href="css/styles.css?v=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      p,
+      h2 {
+        display: inline;
+        font-size: 40px;
+        margin-top: 0px;
+        color: orange;
+      }
+      body {
+        margin: 0;
+        height: 100%;
+        width: 100%;
+        background-color: #be413b;
+      }
+      div.timer {
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        padding: 10px;
+        height: 50px;
+        position: absolute;
+        margin-top: -25px;
+        margin-left: -350px;
+        top: 50%;
+        left: 50%;
+      }
+      div.upleft {
+        color: antiquewhite;
+        padding: 8px;
+      }
+    </style>
   </head>
-
   <body>
-    Jos samo 19 dana :)
-    <script src="js/scripts.js"></script>
+    <div class="upleft">Pa nije to toliko puno jelda?</div>
+    <div class="timer">
+      <p id="days"></p>
+      <p id="hours"></p>
+      <p id="mins"></p>
+      <p id="secs"></p>
+      <h2 id="end"></h2>
+    </div>
+    <script>
+      // The data/time we want to countdown to
+      var countDownDate = new Date("Jun 24, 2021 18:00:00").getTime();
+
+      // Run myfunc every second
+      var myfunc = setInterval(function () {
+        var now = new Date().getTime();
+        var timeleft = countDownDate - now;
+
+        // Calculating the days, hours, minutes and seconds left
+        var days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
+        var hours = Math.floor(
+          (timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        var minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
+
+        // Result is output to the specific element
+        document.getElementById("days").innerHTML = days + " dana, ";
+        document.getElementById("hours").innerHTML = hours + " sati, ";
+        document.getElementById("mins").innerHTML = minutes + " minuta i ";
+        document.getElementById("secs").innerHTML = seconds + " sekundi ";
+
+        // Display the message when countdown is over
+        if (timeleft < 0) {
+          clearInterval(myfunc);
+          document.getElementById("days").innerHTML = "";
+          document.getElementById("hours").innerHTML = "";
+          document.getElementById("mins").innerHTML = "";
+          document.getElementById("secs").innerHTML = "";
+          document.getElementById("end").innerHTML = "Napokon skupa :)";
+        }
+      }, 1000);
+    </script>
   </body>
 </html>
