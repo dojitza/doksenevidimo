@@ -9,24 +9,21 @@
         font-size: 40px;
         margin-top: 0px;
         color: orange;
+        white-space: nowrap;
       }
+      html,
       body {
-        margin: 0;
         height: 100%;
-        width: 100%;
+        margin: 0;
         background-color: #be413b;
       }
       div.timer {
+        display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 5px;
-        padding: 10px;
-        height: 50px;
-        position: absolute;
-        margin-top: -25px;
-        margin-left: -350px;
-        top: 50%;
-        left: 50%;
+        min-height: 100%;
+        width: 100%;
+        flex-flow: column wrap;
       }
       div.upleft {
         color: antiquewhite;
@@ -36,6 +33,8 @@
   </head>
   <body>
     <div class="upleft">Pa nije to toliko puno jelda?</div>
+    <div class="upleft">Jos samo 17d :))?</div>
+
     <div class="timer">
       <p id="days"></p>
       <p id="hours"></p>
@@ -61,10 +60,10 @@
         var seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
 
         // Result is output to the specific element
-        document.getElementById("days").innerHTML = days + " dana, ";
-        document.getElementById("hours").innerHTML = hours + " sati, ";
-        document.getElementById("mins").innerHTML = minutes + " minuta i ";
-        document.getElementById("secs").innerHTML = seconds + " sekundi ";
+        document.getElementById("days").innerHTML = days + " dana,&nbsp";
+        document.getElementById("hours").innerHTML = hours + " sati,&nbsp";
+        document.getElementById("mins").innerHTML = minutes + " minuta i&nbsp";
+        document.getElementById("secs").innerHTML = seconds + " sekundi&nbsp";
 
         // Display the message when countdown is over
         if (timeleft < 0) {
